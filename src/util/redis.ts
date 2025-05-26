@@ -1,5 +1,6 @@
 import { createClient } from "redis";
 
+// Create a Redis client
 const client = createClient({
 	password: process.env.REDIS_PASS,
 	socket: {
@@ -7,27 +8,31 @@ const client = createClient({
 		port: 10533,
 	},
 });
+
+// Connect to Redis and handle connection events
 export function connectToRedis() {
 	client.connect();
-	client.on("error", function (error: Error) {
-		console.error("Failed to connect to redis! " + error);
+	client.on("error", (error: Error) => {
+		console.error("Failed to connect to Redis! " + error);
 	});
-	client.on("connect", function () {
+	client.on("connect", () => {
 		console.log("Connected to Redis");
 	});
 }
 
+// Get the existing Redis client
 export function getRedisClient() {
 	return client;
 }
 
+// Create and return a new Redis client
 export function getNewRedisClient() {
-	const client = createClient({
+	const newClient = createClient({
 		password: process.env.REDIS_PASS,
 		socket: {
 			host: process.env.REDIS_HOST,
-			port: 10533,
+			port: 13800,
 		},
 	});
-	return client;
+	return newClient;
 }
