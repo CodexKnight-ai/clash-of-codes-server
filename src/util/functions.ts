@@ -121,7 +121,7 @@ export async function getScoreFromCF(contestId: number, groupCode: string) {
 			return [];
 		}
 
-		const data = await resp.json();
+		const data: any = await resp.json();
 		if (data.status === "FAILED") {
 			return [];
 		}
