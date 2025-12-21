@@ -5,7 +5,7 @@ const client = createClient({
 	password: process.env.REDIS_PASS,
 	socket: {
 		host: process.env.REDIS_HOST,
-		port: 13800,
+		port: Number(process.env.REDIS_PORT),
 	},
 });
 
@@ -31,7 +31,7 @@ export function getNewRedisClient() {
 		password: process.env.REDIS_PASS,
 		socket: {
 			host: process.env.REDIS_HOST,
-			port: 13800,
+			port: Number(process.env.REDIS_PORT),
 		},
 	});
 	return newClient;

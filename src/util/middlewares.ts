@@ -16,7 +16,7 @@ const envList = [
 	"MAX_RESULTS",
 ];
 
-export function verifyEnv() {
+export async function verifyEnv() {
 	const missingEnvVariables = envList.filter(
 		(envVariable) => !process.env[envVariable]
 	);
@@ -25,7 +25,16 @@ export function verifyEnv() {
 			`Missing environment variables: ${missingEnvVariables.join(", ")}`
 		);
 	}
-	getCFSecretData();
+
+	// Check if CF credentials are configured in Redis
+	// These are optional at startup and can be configured via /admin/cfConfig
+	try {
+		await getCFSecretData();
+		console.log("Codeforces API credentials found in Redis");
+	} catch (error) {
+		console.warn("⚠️  Codeforces API credentials not configured in Redis.");
+		console.warn("   Configure them via POST /admin/cfConfig to enable contest syncing.");
+	}
 }
 const restricted = ["/admin", "/login"];
 

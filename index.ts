@@ -76,7 +76,7 @@ wss.on("connection", async (ws) => {
 
 const client = getClient();
 client.on("open", async () => {
-	verifyEnv();
+	await verifyEnv();
 
 	setInterval(async () => {
 		await syncLeaderboardFromCF();
