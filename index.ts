@@ -28,8 +28,8 @@ const corsOptions = {
 	origin: [
 		"http://localhost:3000",
 		"http://localhost:3001",
-		"https://clash-of-codes-five.vercel.app",
-		"https://clash-of-codes-api-pwiz.onrender.com",
+		"https://clash-of-codes-server.onrender.com",
+		"https://clash-of-codes-2026.vercel.app",
 	],
 	credentials: true, //access-control-allow-credentials:true
 	optionSuccessStatus: 200,
@@ -86,4 +86,7 @@ client.on("open", async () => {
 	});
 });
 
-client.close();
+
+// client.close();
+
+// (This was removed as it was closing the connection prematurely)

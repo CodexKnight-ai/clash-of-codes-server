@@ -62,7 +62,8 @@ export async function auth(req: Request, res: Response, next: NextFunction) {
 }
 
 export function authToCookie(req: Request, res: Response, next: NextFunction) {
-	if (!includesOrStartsWith(restricted, req.path)) {
+	let restricted2 = restricted.filter((e) => e != "/login");
+	if (!includesOrStartsWith(restricted2, req.path)) {
 		next();
 		return;
 	}
