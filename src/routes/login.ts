@@ -12,7 +12,7 @@ export default async function login(req: Request, res: Response) {
 	}
 	const payload = await verifyGoogleToken(token);
 	if (payload === 401) {
-		return res.send("Invalid google JWT").status(401);
+		return res.status(401).send("Invalid google JWT");
 	}
 	const db = getDB();
 
